@@ -1,0 +1,832 @@
+--[[
+ ____                 _                 __        __        _     _          
+|  _ \ ___ _ __ _ __ | | _____  __      \ \      / /_ _ ___| |__ (_) ___ ____
+| |_) / _ \ '__| '_ \| |/ _ \ \/ /____   \ \ /\ / / _` / __| '_ \| |/ _ \_  /
+|  __/  __/ |  | |_) | |  __/>  <_____|   \ V  V / (_| \__ \ | | | |  __// / 
+|_|   \___|_|  | .__/|_|\___/_/\_\         \_/\_/ \__,_|___/_| |_|_|\___/___|
+               |_|                                                               ]]
+
+
+
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/gen2"))()
+
+local window = Rayfield:CreateWindow({
+    name = "Perplex",
+	theme = "frost",
+    subtitle = "A Washiez Exploiter Paradise by x4206456",
+    sidebarLayout = true,
+    KeySystem = false,
+    LoadingTitle = "Perplex is initializing",
+})
+
+local info = window:CreateTab({ name = "Info", icon = 105251919929559 })
+
+info:CreateText({
+    name = "Information about this script",
+    text = "This is a script made for washiez by Hashtag otherwise known as x4206456 on roblox blablabla, u can find me at the tc. This Shouldn't need any update, for any support then dm my discord account called hashsotuff",    
+})
+info:CreateText({
+    name = "How to use?",
+    text = "Perplex is pretty much a self use panel since its easy to configure car and user settings, yes if ur asking yourself, everything is tested before updating -_-",
+})
+
+--[[====================================================================== 
+         ____                                                              
+        / ___|__ _ _ __                                                    
+        | |   / _` | '__|                                                   
+        | |__| (_| | |                                                       
+        \____\__,_|_|    __ _             _  _                       _   _
+                        / ___|___  _ __  / _(_) __ _ _   _ _ __ __ _| |_(_) ___  _ __  ___ 
+                       | |   / _ \| '_ \| |_| |/ _` | | | | '__/ _` | __| |/ _ \| '_ \/ __|
+                       | |__| (_) | | | |  _| | (_| | |_| | | | (_| | |_| | (_) | | | \__ \
+                        \____\___/|_| |_|_| |_|\__, |\__,_|_|  \__,_|\__|_|\___/|_| |_|___/
+                                               |___/                                       
+
+   =======================================================================
+]]
+
+
+
+
+local carConfig = window:CreateTab({ name = "Car Settings", icon = 76336564882255})
+carConfig:CreateText({
+    name = "Car Configuration",
+    text = "Configure the car attributes here."
+})
+
+carConfig:CreateDropdown({
+    name = "Pick Car Model",
+    options = {
+        "Jeep", "SUV", "Striped SUV", "Sports Car", "Police Car", 
+        "Dune Buggy", "Camo Dune Buggy", "Van", "Striped Van", 
+        "Striped Sedan", "Striped Sports Car", "Painted Sports Car", 
+        "Pickup Truck", "Foiled Pickup Truck", "Camo Jeep", "Sedan", 
+        "Supercar", "Striped Supercar"
+    },
+    callback = function(selection)
+        local spawned = workspace:FindFirstChild("SpawnedCars")
+        if spawned then
+            local target = spawned:FindFirstChild(game:GetService("Players").LocalPlayer.Name .. "-" .. selection)
+            if target then
+                _G.SelectedCar = target
+            else
+                _G.SelectedCar = nil
+            end
+        else
+            _G.SelectedCar = nil
+        end
+    end
+})
+
+carConfig:CreateInput({
+    name = "MaxSpeed Value",
+    placeholder = "Enter Speed Value",
+    accepted = true,
+    callback = function(text)
+        local value = tonumber(text)
+        if value and _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("MaxSpeed", value)
+        end
+    end
+})
+
+carConfig:CreateInput({
+    name = "Driving Torque",
+    placeholder = "Enter Torque Value",
+    accepted = true,
+    callback = function(text)
+        local value = tonumber(text)
+        if value and _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("DrivingTorque", value)
+        end
+    end
+})
+
+carConfig:CreateInput({
+    name = "Reverse Speed",
+    placeholder = "Enter Value",
+    accepted = true,
+    callback = function(text)
+        local value = tonumber(text)
+        if value and _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("ReverseSpeed", value)
+        end
+    end
+})
+
+carConfig:CreateInput({
+    name = "Fuel",
+    placeholder = "Enter Value",
+    accepted = true,
+    callback = function(text)
+        local value = tonumber(text)
+        if value and _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("Fuel", value)
+        end
+    end
+})
+
+carConfig:CreateInput({
+    name = "Fuel Consumption Rate /s",
+    placeholder = "Enter Value",
+    accepted = true,
+    callback = function(text)
+        local value = tonumber(text)
+        if value and _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("FuelLossPerSecond", value)
+        end
+    end
+})
+
+carConfig:CreateInput({
+    name = "Fuel Update Rate /s",
+    placeholder = "Enter Value",
+    accepted = true,
+    callback = function(text)
+        local value = tonumber(text)
+        if value and _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("FuelUpdatesPerSecond", value)
+        end
+    end
+})
+
+carConfig:CreateInput({
+    name = "Wheel Friction",
+    placeholder = "Enter Value",
+    accepted = true,
+    callback = function(text)
+        local value = tonumber(text)
+        if value and _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("WheelFriction", value)
+        end
+    end
+})
+
+carConfig:CreateInput({
+    name = "Maximum Steering",
+    placeholder = "Enter Value",
+    accepted = true,
+    callback = function(text)
+        local value = tonumber(text)
+        if value and _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("MaxSteer", value)
+        end
+    end
+})
+
+carConfig:CreateInput({
+    name = "TorsionSpring Stiffness",
+    placeholder = "Enter Value",
+    accepted = true,
+    callback = function(text)
+        local value = tonumber(text)
+        if value and _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("TorsionSpringStiffness", value)
+        end
+    end
+})
+
+carConfig:CreateInput({
+    name = "TorsionSpring Dampness",
+    placeholder = "Enter Value",
+    accepted = true,
+    callback = function(text)
+        local value = tonumber(text)
+        if value and _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("TorsionSpringDampness", value)
+        end
+    end
+})
+
+carConfig:CreateSwitch({
+    name = "Freeze Car",
+    placeholder = "Enter Value",
+    accepted = true,
+    callback = function(value)
+        if _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("FreezeCar", value)
+        end
+
+    end
+
+})
+
+carConfig:CreateSwitch({
+    name = "Allow Car Hijacking(I have no idea why Basic essentials made this attribute bro)",
+    placeholder = "Enter Value",
+    accepted = true,
+    callback = function(value)
+        if _G.SelectedCar then
+            _G.SelectedCar:SetAttribute("FreezeCar", value)
+        end
+
+    end
+
+})
+
+local fa = {
+    fb = false,
+    fc = 50,
+    fd = game:GetService("Players").LocalPlayer,
+    fe = game:GetService("RunService"),
+    ff = nil,
+    fg = nil
+}
+
+carConfig:CreateSwitch({
+    name = "Car Fly",
+    Callback = function(h)
+        fa.fb = h
+        if not fa.fb then
+            if fa.ff then fa.ff:Destroy() fa.ff = nil end
+            if fa.fg then fa.fg:Destroy() fa.fg = nil end
+        end
+    end
+})
+
+carConfig:CreateSlider({
+    name = "Fly Speed",
+    range = {20, 150},
+    increment = 5,
+    value = fa.fc,
+    Callback = function(h)
+        fa.fc = h
+    end
+})
+
+fa.fe.RenderStepped:Connect(function()
+    if fa.fb and fa.fd.Character and fa.fd.Character:FindFirstChild("Humanoid") then
+        local seat = fa.fd.Character.Humanoid.SeatPart
+        if seat and seat:IsA("VehicleSeat") then
+            local root = seat.AssemblyRootPart
+            if root then
+                if not fa.ff then
+                    fa.ff = Instance.new("BodyVelocity")
+                    fa.ff.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+                    fa.ff.Parent = root
+                end
+                if not fa.fg then
+                    fa.fg = Instance.new("BodyGyro")
+                    fa.fg.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+                    fa.fg.Parent = root
+                end
+                
+                local dir = Vector3.new(0, 0, 0)
+                local u = game:GetService("UserInputService")
+                local cam = workspace.CurrentCamera.CFrame
+                
+                if u:IsKeyDown(Enum.KeyCode.W) then dir = dir + cam.LookVector end
+                if u:IsKeyDown(Enum.KeyCode.S) then dir = dir - cam.LookVector end
+                if u:IsKeyDown(Enum.KeyCode.A) then dir = dir - cam.RightVector end
+                if u:IsKeyDown(Enum.KeyCode.D) then dir = dir + cam.RightVector end
+                if u:IsKeyDown(Enum.KeyCode.Space) then dir = dir + Vector3.new(0, 1, 0) end
+                if u:IsKeyDown(Enum.KeyCode.LeftShift) then dir = dir - Vector3.new(0, 1, 0) end
+                
+                if dir.Magnitude > 0 then
+                    fa.ff.Velocity = dir.Unit * fa.fc
+                else
+                    fa.ff.Velocity = Vector3.new(0, 0, 0)
+                end
+                fa.fg.CFrame = cam
+                return
+            end
+        end
+    end
+    if fa.ff then fa.ff:Destroy() fa.ff = nil end
+    if fa.fg then fa.fg:Destroy() fa.fg = nil end
+end)
+
+
+
+
+
+
+--[[
+
+
+8 8888      88    d888888o.   8 8888888888   8 888888888o.                                                                
+8 8888      88  .`8888:' `88. 8 8888         8 8888    `88.                                                               
+8 8888      88  8.`8888.   Y8 8 8888         8 8888     `88                                                               
+8 8888      88  `8.`8888.     8 8888         8 8888     ,88                                                               
+8 8888      88   `8.`8888.    8 888888888888 8 8888.   ,88'                                                               
+8 8888      88    `8.`8888.   8 8888         8 888888888P'                                                                
+8 8888      88     `8.`8888.  8 8888         8 8888`8b                                                                    
+` 8888     ,8P 8b   `8.`8888. 8 8888         8 8888 `8b.                                                                  
+  8888   ,d8P  `8b.  ;8.`8888 8 8888         8 8888   `8b.                                                               
+   `Y88888P'    `Y8888P ,88P' 8 888888888888 8 8888     `88.                                                              
+                                                                                                                          
+   d888888o.   8 8888888888 8888888 8888888888 8888888 8888888888  8 888    8b.              8     ,o888888o.      d888888o.  
+ .`8888:' `88. 8 8888             8 8888             8 8888        8 888    8 888o.          8    8888     `88.  .`8888:' `88.
+ 8.`8888.   Y8 8 8888             8 8888             8 8888        8 888    8 Y88888o.       8 ,8 8888       `8. 8.`8888.   Y8
+ `8.`8888.     8 8888             8 8888             8 8888        8 888    8 .`Y888888o.    8 88 8888           `8.`8888.    
+  `8.`8888.    8 888888888888     8 8888             8 8888        8 888    8 8o. `Y888888o. 8 88 8888            `8.`8888.   
+   `8.`8888.   8 8888             8 8888             8 8888        8 888    8 8`Y8o. `Y88888o8 88 8888             `8.`8888.  
+    `8.`8888.  8 8888             8 8888             8 8888        8 888    8 8   `Y8o. `Y8888 88 8888   8888888    `8.`8888. 
+8b   `8.`8888. 8 8888             8 8888             8 8888        8 888    8 8      `Y8o. `Y8 `8 8888       .8'8b   `8.`8888.
+`8b.  ;8.`8888 8 8888             8 8888             8 8888        8 888    8 8         `Y8o.`    8888     ,88' `8b.  ;8.`8888
+ `Y8888P ,88P' 8 888888888888     8 8888             8 8888        8 888    8 8            `Yo     `8888888P'    `Y8888P ,88P'
+
+                                                                                                                                                    ]]
+
+local user = window:CreateTab({ name = "User Settings", icon = 125864724844419})
+user:CreateSwitch({
+    name = "Hide Username",
+Callback = function(h)
+	local p = workspace.Nametags:FindFirstChild(game:GetService("Players").LocalPlayer.Name)
+	if p then
+		local u = p:FindFirstChild("Username")
+		if u then
+			u.Visible = not h
+		end
+	end
+end
+
+})
+
+user:CreateButton({
+    name = "Delete trees",
+Callback = function(h)
+    for i,v in pairs(workspace:GetDescendants()) do
+        if v:IsA("Folder") and v.Name == "Doors" then
+            v:Destroy()
+        end
+    end
+end
+})
+
+user:CreateButton({
+    name = "Delete Nametags (this will break hide user)",
+Callback = function(h)
+    for i,v in pairs(workspace:GetDescendants()) do
+        if v:IsA("Folder") and v.Name == "Nametags" then
+            v:Destroy()
+        end
+    end
+end
+})
+
+user:CreateButton({
+    name = "Delete trees",
+Callback = function(h)
+    for i,v in pairs(workspace:GetDescendants()) do
+        if v:IsA("Folder") and v.Name == "Doors" then
+            v:Destroy()
+        end
+    end
+end
+})
+
+local csa = {
+    csb = false,
+    csc = game:GetService("Players"),
+    csd = game:GetService("Players").LocalPlayer,
+    cse = game:GetService("CoreGui") or game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"),
+    gui = nil,
+    frame = nil,
+    l = nil
+}
+
+user:CreateSwitch({
+    name = "Chat Spy",
+    Callback = function(h)
+        csa.csb = h
+        if csa.gui then
+            csa.gui.Enabled = h
+        end
+    end
+})
+
+local function csg()
+    local sg = Instance.new("ScreenGui")
+    sg.Name = "CS_Gui"
+    sg.Enabled = false
+    sg.ResetOnSpawn = false
+    
+    local sf = Instance.new("ScrollingFrame")
+    sf.Size = UDim2.new(0, 300, 0, 150)
+    sf.Position = UDim2.new(0, 20, 1, -170)
+    sf.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    sf.BackgroundTransparency = 0.6
+    sf.BorderSizePixel = 0
+    sf.ScrollBarThickness = 4
+    sf.CanvasSize = UDim2.new(0, 0, 0, 0)
+    sf.Parent = sg
+    
+    local tl = Instance.new("UIListLayout")
+    tl.SortOrder = Enum.SortOrder.LayoutOrder
+    tl.Padding = UDim.new(0, 3)
+    tl.Parent = sf
+    
+    sg.Parent = csa.cse
+    csa.gui = sg
+    csa.frame = sf
+    csa.l = tl
+end
+
+local function csl(p, msg)
+    if not csa.csb or p == csa.csd or not csa.frame then return end
+    
+    local txt = Instance.new("TextLabel")
+    txt.Size = UDim2.new(1, -10, 0, 20)
+    txt.BackgroundTransparency = 1
+    txt.Text = "<b><font color='rgb(255, 0, 100)'>[" .. p.Name .. "]:</font></b> " .. msg
+    txt.TextColor3 = Color3.fromRGB(255, 255, 255)
+    txt.TextSize = 14
+    txt.Font = Enum.Font.SourceSans
+    txt.TextXAlignment = Enum.TextXAlignment.Left
+    txt.RichText = true
+    txt.Parent = csa.frame
+    
+    local height = csa.l and csa.l.AbsoluteContentSize.Y or 200
+    csa.frame.CanvasSize = UDim2.new(0, 0, 0, height)
+    csa.frame.CanvasPosition = Vector2.new(0, height)
+end
+
+csg()
+
+for _, p in pairs(csa.csc:GetPlayers()) do
+    p.Chatted:Connect(function(msg) csl(p, msg) end)
+end
+
+csa.csc.PlayerAdded:Connect(function(p)
+    p.Chatted:Connect(function(msg) csl(p, msg) end)
+end)
+
+local cha = {
+    chb = game:GetService("Players"),
+    chc = game:GetService("Players").LocalPlayer,
+    chd = nil
+}
+
+local function che()
+    if cha.chd then
+        cha.chd:Destroy()
+        cha.chd = nil
+    end
+    if cha.chc.Character then
+        for _, obj in pairs(cha.chc.Character:GetChildren()) do
+            if obj:IsA("BasePart") and obj.Name ~= "HumanoidRootPart" then
+                obj.Transparency = 0
+            elseif obj:IsA("Accessory") and obj:FindFirstChild("Handle") then
+                obj.Handle.Transparency = 0
+            end
+        end
+    end
+end
+
+user:CreateInput({
+    name = "Morph into Player",
+    placeholder = "Enter Username",
+    accepted = true,
+    callback = function(text)
+        if text and text ~= "" then
+            local targetPlayer = nil
+            for _, p in pairs(cha.chb:GetPlayers()) do
+                if p.Name:lower():sub(1, #text) == text:lower() then
+                    targetPlayer = p
+                    break
+                end
+            end
+            
+            if targetPlayer and targetPlayer.Character and cha.chc.Character then
+                che()
+                
+                local myChar = cha.chc.Character
+                local myRoot = myChar:FindFirstChild("HumanoidRootPart")
+                local targetChar = targetPlayer.Character
+                
+                if myRoot then
+                    targetChar.Archivable = true
+                    local clone = targetChar:Clone()
+                    targetChar.Archivable = false
+                    
+                    local tRoot = clone:FindFirstChild("HumanoidRootPart")
+                    local tHum = clone:FindFirstChildOfClass("Humanoid")
+                    if tHum then tHum:Destroy() end
+                    if tRoot then tRoot:Destroy() end
+                    
+                    for _, obj in pairs(myChar:GetChildren()) do
+                        if obj:IsA("BasePart") and obj.Name ~= "HumanoidRootPart" then
+                            obj.Transparency = 1
+                        elseif obj:IsA("Accessory") and obj:FindFirstChild("Handle") then
+                            obj.Handle.Transparency = 1
+                        end
+                    end
+                    
+                    clone.Parent = myChar
+                    cha.chd = clone
+                    
+                    local conn
+                    conn = game:GetService("RunService").Stepped:Connect(function()
+                        if clone and myChar and myRoot and cha.chd == clone then
+                            clone:SetPrimaryPartCFrame(myRoot.CFrame)
+                        else
+                            conn:Disconnect()
+                        end
+                    end)
+                end
+            end
+        end
+    end
+})
+
+user:CreateButton({
+    name = "Reset Appearance",
+    Callback = function()
+        che()
+    end
+})
+
+
+
+
+--[[
+==========================================================|
+    __     ___                 _                          |
+    \ \   / (_)___ _   _  __ _| |___       0              |
+     \ \ / /| / __| | | |/ _` | / __|           )         |
+      \ V / | \__ \ |_| | (_| | \__ \      0              |
+       \_/  |_|___/\__,_|\__,_|_|___/                     |
+                                                          |
+ =========================================================|    
+]]
+
+local Visuals = window:CreateTab({ name = "Visuals", icon = 77725821744781})
+
+local a = {
+    b = false,
+    c = false,
+    d = false,
+    e = Color3.fromRGB(255, 0, 0),
+    f = Color3.fromRGB(255, 255, 0),
+    g = 1,
+}
+
+Visuals:CreateSwitch({
+    name = "Player ESP",
+    Callback = function(h)
+        a.b = h
+    end
+})
+
+Visuals:CreateSwitch({
+    name = "Show Boxes",
+    Callback = function(h)
+        a.c = h
+    end
+})
+
+Visuals:CreateSwitch({
+    name = "Show Lines (Tracers)",
+    Callback = function(h)
+        a.d = h
+    end
+})
+
+Visuals:CreateSlider({
+    name = "Line Thickness",
+    range = {1, 5},
+    increment = 1,
+    value = a.g,
+    Callback = function(h)
+        a.g = h
+    end
+})
+
+Visuals:CreateColorPicker({
+    name = "Box Color",
+    color = a.e,
+    Callback = function(h)
+        a.e = h
+    end
+})
+
+Visuals:CreateColorPicker({
+    name = "Line Color",
+    color = a.f,
+    Callback = function(h)
+        a.f = h
+    end
+})
+
+local i = game:GetService("Players")
+local j = game:GetService("RunService")
+local k = workspace.CurrentCamera
+local l = i.LocalPlayer
+local m = {}
+
+local function n(o)
+    if m[o] then return end
+    local p = Drawing.new("Square")
+    p.Visible = false
+    p.Filled = false
+    local q = Drawing.new("Line")
+    q.Visible = false
+    m[o] = {r = p, s = q}
+end
+
+local function t(o)
+    if m[o] then
+        m[o].r:Remove()
+        m[o].s:Remove()
+        m[o] = nil
+    end
+end
+
+for _, u in pairs(i:GetPlayers()) do
+    if u ~= l then n(u) end
+end
+i.PlayerAdded:Connect(n)
+i.PlayerRemoving:Connect(t)
+
+j.RenderStepped:Connect(function()
+    for v, w in pairs(m) do
+        local x = v.Character
+        local y = x and x:FindFirstChild("HumanoidRootPart")
+        local z = x and x:FindFirstChildOfClass("Humanoid")
+        
+        w.r.Visible = false
+        w.s.Visible = false
+        
+        if a.b and y and z and z.Health > 0 then
+            local A, B = k:WorldToViewportPoint(y.Position)
+            if B then
+                local C = 1000 / A.Z
+                local D = 1500 / A.Z
+                
+                if a.c then
+                    w.r.Size = Vector2.new(C, D)
+                    w.r.Position = Vector2.new(A.X - (C / 2), A.Y - (D / 2))
+                    w.r.Color = a.e
+                    w.r.Thickness = a.g
+                    w.r.Visible = true
+                end
+                
+                if a.d then
+                    w.s.From = Vector2.new(k.ViewportSize.X / 2, k.ViewportSize.Y)
+                    w.s.To = Vector2.new(A.X, A.Y)
+                    w.s.Color = a.f
+                    w.s.Thickness = a.g
+                    w.s.Visible = true
+                end
+            end
+        end
+    end
+end)
+
+--[[ ==========================================
+                           __   __            _            
+    /\                     \ \ / /           | |           
+   /  \  _ _   _ _ __ ___   \ v / ___  _  ___| |_  _ _   _ 
+  / /\ \| ( \ / ) '_ (   )   > < / _ \| |/ /     \| ( \ / )
+ / /  \ \ |\ v /| | | | |   / ^ ( (_) ) / ( (| |) ) |\ v / 
+/_/    \_\_)| | |_| | |\_) /_/ \_\___/|__/ \_   _/ \_)| |  
+            | |     | |                      | |      | |  
+            |_|     |_|                      |_|      |_|  
+================================================]]
+
+local Lighting = window:CreateTab({ name = "Lightining", icon = 81872932032763})
+
+local lca = {
+    lcb = game:GetService("Lighting"),
+    lcc = game:GetService("Lighting").ClockTime,
+    lcd = game:GetService("Lighting").Brightness,
+    lce = game:GetService("Lighting").ExposureCompensation,
+    lcf = game:GetService("Lighting").ShadowSoftness,
+    lcg = game:GetService("Lighting").GeographicLatitude,
+    lch = game:GetService("Lighting").EnvironmentDiffuseScale,
+    lci = game:GetService("Lighting").EnvironmentSpecularScale,
+    lcj = game:GetService("Lighting").GlobalShadows,
+    lck = game:GetService("Lighting").Ambient,
+    lcl = game:GetService("Lighting").OutdoorAmbient,
+    lcm = game:GetService("Lighting").ColorShift_Top,
+    lcn = game:GetService("Lighting").FogColor
+}
+
+Lighting:CreateSlider({
+    name = "Time of Day (ClockTime)",
+    range = {0, 24},
+    increment = 0.5,
+    value = lca.lcc,
+    Callback = function(h)
+        lca.lcb.ClockTime = h
+    end
+})
+
+Lighting:CreateSlider({
+    name = "Lighting Brightness",
+    range = {0, 10},
+    increment = 0.1,
+    value = lca.lcd,
+    Callback = function(h)
+        lca.lcb.Brightness = h
+    end
+})
+
+Lighting:CreateSlider({
+    name = "Exposure Compensation",
+    range = {-5, 5},
+    increment = 0.1,
+    value = lca.lce,
+    Callback = function(h)
+        lca.lcb.ExposureCompensation = h
+    end
+})
+
+Lighting:CreateSlider({
+    name = "Shadow Softness",
+    range = {0, 1},
+    increment = 0.05,
+    value = lca.lcf,
+    Callback = function(h)
+        lca.lcb.ShadowSoftness = h
+    end
+})
+
+Lighting:CreateSlider({
+    name = "Geographic Latitude",
+    range = {-90, 90},
+    increment = 1,
+    value = lca.lcg,
+    Callback = function(h)
+        lca.lcb.GeographicLatitude = h
+    end
+})
+
+Lighting:CreateSlider({
+    name = "Environment Diffuse Scale",
+    range = {0, 1},
+    increment = 0.05,
+    value = lca.lch,
+    Callback = function(h)
+        lca.lcb.EnvironmentDiffuseScale = h
+    end
+})
+
+Lighting:CreateSlider({
+    name = "Environment Specular Scale",
+    range = {0, 1},
+    increment = 0.05,
+    value = lca.lci,
+    Callback = function(h)
+        lca.lcb.EnvironmentSpecularScale = h
+    end
+})
+
+Lighting:CreateSwitch({
+    name = "Global Shadows",
+    value = lca.lcj,
+    Callback = function(h)
+        lca.lcb.GlobalShadows = h
+    end
+})
+
+Lighting:CreateColorPicker({
+    name = "Ambient Color",
+    color = lca.lck,
+    Callback = function(h)
+        lca.lcb.Ambient = h
+    end
+})
+
+Lighting:CreateColorPicker({
+    name = "Outdoor Ambient Color",
+    color = lca.lcl,
+    Callback = function(h)
+        lca.lcb.OutdoorAmbient = h
+    end
+})
+
+Lighting:CreateColorPicker({
+    name = "ColorShift Top (Sun/Moon)",
+    color = lca.lcm,
+    Callback = function(h)
+        lca.lcb.ColorShift_Top = h
+    end
+})
+
+Lighting:CreateColorPicker({
+    name = "Fog Color",
+    color = lca.lcn,
+    Callback = function(h)
+        lca.lcb.FogColor = h
+    end
+})
+
+Lighting:CreateButton({
+    name = "Reset to Default Lighting",
+    Callback = function()
+        lca.lcb.ClockTime = lca.lcc
+        lca.lcb.Brightness = lca.lcd
+        lca.lcb.ExposureCompensation = lca.lce
+        lca.lcb.ShadowSoftness = lca.lcf
+        lca.lcb.GeographicLatitude = lca.lcg
+        lca.lcb.EnvironmentDiffuseScale = lca.lch
+        lca.lcb.EnvironmentSpecularScale = lca.lci
+        lca.lcb.GlobalShadows = lca.lcj
+        lca.lcb.Ambient = lca.lck
+        lca.lcb.OutdoorAmbient = lca.lcl
+        lca.lcb.ColorShift_Top = lca.lcm
+        lca.lcb.FogColor = lca.lcn
+    end
+})
