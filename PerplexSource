@@ -931,10 +931,3 @@ admin:CreateButton({
        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Axiom-Execution-Line-226472"))()
     end
 })
-
-admin:CreateButton({
-    name = "Admin Panel",
-    Callback = function()
-    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-ADMIN-PANEL-FE-229716"))()
-  end
-})
