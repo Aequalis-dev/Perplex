@@ -5,7 +5,7 @@
 |  __/  __/ |  | |_) | |  __/>  <_____|   \ V  V / (_| \__ \ | | | |  __// / 
 |_|   \___|_|  | .__/|_|\___/_/\_\         \_/\_/ \__,_|___/_| |_|_|\___/___|
                |_|                                                               ]]
-
+-- updated october 4RTH
 
 
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/gen2"))()
@@ -871,8 +871,70 @@ externalScripts:CreateButton({
 })
 
 externalScripts:CreateButton({
+    name = "Load Washiez skidded hub",
+    Callback = function()
+       loadstring(game:HttpGet('https://washiez.xyz/script'))()
+    end
+})
+
+--[[
+=====================================================================================================================
+\/          █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗                                 
+/\         ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║                                 
+\/         ███████║██║  ██║██╔████╔██║██║██╔██╗ ██║       Perplexity Hub - Car Wash GUI                          
+/\         ██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║      By x4206456                       
+\/         ██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║        Admin Commands Tab                         
+/\         ╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝                                 
+\/                                                                      
+/\          ██████╗ ██████╗ ███╗   ███╗███╗   ███╗ █████╗ ███╗   ██╗██████╗ ███████╗
+\/         ██╔════╝██╔═══██╗████╗ ████║████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔════╝
+/\         ██║     ██║   ██║██╔████╔██║██╔████╔██║███████║██╔██╗ ██║██║  ██║███████╗
+\/         ██║     ██║   ██║██║╚██╔╝██║██║╚██╔╝██║██╔══██║██║╚██╗██║██║  ██║╚════██║
+/\         ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║ ╚═╝ ██║██║  ██║██║ ╚████║██████╔╝███████║
+\/          ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝
+/\
+=====================================================================================================================
+                                                                                                           ]]
+local admin = window:CreateTab({ name = "Admin Commands", icon = 127282412251273})
+
+admin:CreateButton({
     name = "Rocky2u",
     Callback = function()
       loadstring(game:HttpGet("https://raw.githubusercontent.com/Aequalis-dev/ByzantiumTeamStorage/refs/heads/main/Rocky2u"))()
     end
+})
+
+admin:CreateButton({
+    name = "StrawberryCMD",
+    Callback = function()
+      loadstring(game:HttpGet("https://st-rw.xyz/script/cmd/main.lua"))()
+    end
+})
+
+admin:CreateButton({
+    name = "QuirkyCMD",
+    Callback = function()
+      loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-QuirkyCMD-Fe-224781"))()
+    end
+})
+
+admin:CreateButton({
+    name = "Raknet Spy",
+    Callback = function()
+       loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-RakNet-spy-script-226539"))()
+    end
+})
+
+admin:CreateButton({
+    name = "Axiom",
+    Callback = function()
+       loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Axiom-Execution-Line-226472"))()
+    end
+})
+
+admin:CreateButton({
+    name = "Admin Panel",
+    Callback = function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-ADMIN-PANEL-FE-229716"))()
+  end
 })
