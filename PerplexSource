@@ -877,6 +877,20 @@ externalScripts:CreateButton({
     end
 })
 
+externalScripts:CreateButton({
+  name = "Load Car Audio Breaker",
+  Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Aequalis-dev/Washiez/refs/heads/main/AudioCarGlitcher.lua'))()
+  end
+)}
+
+externalScripts:CreateButton({
+   name = "Load Guide Leaker",
+   Callback = function()
+    laodstring(game:HttpGet('https://raw.githubusercontent.com/Aequalis-dev/Washiez/refs/heads/main/BytecodeLeaker-byurdear-hashtag'))()
+end
+})
+
 --[[
 =====================================================================================================================
 \/          █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗                                 
