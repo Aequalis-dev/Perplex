@@ -1,13 +1,14 @@
 local Players = game:GetService("Players")
 local TeleportService = game:GetService("TeleportService")
-local game = 6764533218
+local targetGame = 6764533218
+local trainingCenter = 6868593153
 local player = Players.LocalPlayer
 
-if game.PlaceId ~= game then
+if game.PlaceId ~= targetGame and game.PlaceId ~= trainingCenter then
     warn("wrong game")
     warn("Open: https://www.roblox.com/games/6764533218/Washiez-Car-Wash")
     pcall(function()
-        TeleportService:Teleport(game, player)
+        TeleportService:Teleport(targetGame, player)
     end)
     return
 end
