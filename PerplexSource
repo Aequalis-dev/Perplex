@@ -883,7 +883,7 @@ externalScripts:CreateButton({
   Callback = function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Aequalis-dev/Washiez/refs/heads/main/AudioCarGlitcher.lua"))()
   end
-)}
+})
 
 externalScripts:CreateButton({
    name = "Load Guide Leaker",
