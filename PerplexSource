@@ -888,7 +888,7 @@ externalScripts:CreateButton({
 externalScripts:CreateButton({
    name = "Load Guide Leaker",
    Callback = function()
-    laodstring(game:HttpGet("https://raw.githubusercontent.com/Aequalis-dev/Washiez/refs/heads/main/BytecodeLeaker-byurdear-hashtag"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Aequalis-dev/Washiez/refs/heads/main/BytecodeLeaker-byurdear-hashtag"))()
 end
 })
 
