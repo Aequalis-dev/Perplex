@@ -1,3 +1,16 @@
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local game = 6764533218
+local player = Players.LocalPlayer
+
+if game.PlaceId ~= game then
+    warn("wrong game")
+    warn("Open: https://www.roblox.com/games/6764533218/Washiez-Car-Wash")
+    pcall(function()
+        TeleportService:Teleport(game, player)
+    end)
+    return
+end
 pcall(function() loadstring(game:HttpGet("https://scriptblox.com/ingest/clientv2.lua"))("proj_1d5a9fe96c01", "1.0.0", false) end)
 --[[
  ____                 _                 __        __        _     _          
